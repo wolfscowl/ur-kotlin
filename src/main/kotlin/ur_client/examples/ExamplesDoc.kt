@@ -609,7 +609,7 @@ object ExamplesDoc {
 
     fun onRobotTFGGripExt() {
         val ur = UR("192.168.2.1")
-        val tfg = Examples.ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
+        val tfg = ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
 
         runBlocking {
             ur.connect()
@@ -630,7 +630,7 @@ object ExamplesDoc {
 
     fun onRobotTFGReleaseExt() {
         val ur = UR("192.168.2.1")
-        val tfg = Examples.ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
+        val tfg = ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
 
         runBlocking {
             ur.connect()
@@ -651,7 +651,7 @@ object ExamplesDoc {
 
     fun onRobotTFGGripInt() {
         val ur = UR("192.168.2.1")
-        val tfg = Examples.ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
+        val tfg = ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
 
         runBlocking {
             ur.connect()
@@ -672,7 +672,7 @@ object ExamplesDoc {
 
     fun onRobotTFGReleaseInt() {
         val ur = UR("192.168.2.1")
-        val tfg = Examples.ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
+        val tfg = ur.attachToolOnRobotTFG(host = "192.168.2.2", toolIndex = 0)
 
         runBlocking {
             ur.connect()

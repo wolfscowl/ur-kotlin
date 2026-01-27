@@ -129,7 +129,7 @@ import kotlin.system.exitProcess
 fun main() { 
    //sampleStart 
    val ur = UR(&quot;192.168.2.1&quot;)
-val tfg = Examples.ur.attachToolOnRobotTFG(host = &quot;192.168.2.2&quot;, toolIndex = 0)
+val tfg = ur.attachToolOnRobotTFG(host = &quot;192.168.2.2&quot;, toolIndex = 0)
 
 runBlocking {
     ur.connect()
