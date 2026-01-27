@@ -133,14 +133,12 @@ fun main() {
 runBlocking {
     try {
         ur.connect()
-        ur.isConnectedFlow.first { it }
     } catch(e: Exception) {
         println (&quot;Host is unavailable&quot;)
         exitProcess(1)
     }
     /* Do something */
     ur.disconnect()
-    ur.isConnectedFlow.first { !it }
 } 
    //sampleEnd
 }</code></pre></div></div></div>

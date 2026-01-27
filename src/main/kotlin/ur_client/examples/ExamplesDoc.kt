@@ -30,12 +30,12 @@ object ExamplesDoc {
             ur.connect()
             ur.isConnectedFlow.first { it }
 
-            ur.powerOn { println(it) }
+            println( ur.powerOn().getOrThrow() )
             ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_RUNNING}
 
             /* Do something */
 
-            ur.powerOff { println(it) }
+            println( ur.powerOff().getOrThrow() )
             ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_POWER_OFF}
         }
     }
@@ -45,13 +45,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.load(
-                program = "programs/test.urp",
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.load(program = "programs/test.urp").getOrElse { it.message }
             println(result)
         }
     }
@@ -61,12 +55,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.play(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.play().getOrElse { it.message }
             println(result)
         }
     }
@@ -76,12 +65,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.stop(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.stop().getOrElse { it.message }
             println(result)
         }
     }
@@ -91,12 +75,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.pause(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.pause().getOrElse { it.message }
             println(result)
         }
     }
@@ -106,12 +85,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchLoadedProgram(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchLoadedProgram().getOrElse { it.message }
             println(result)
         }
     }
@@ -121,12 +95,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchProgramState(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchProgramState().getOrElse { it.message }
             println(result)
         }
     }
@@ -136,12 +105,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchIsRunning(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchIsRunning().getOrElse { it.message }
             println(result)
         }
     }
@@ -151,13 +115,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.loadInstallation(
-                installation = "installations/default.installations",
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.loadInstallation(installation = "installations/default.installations").getOrElse{ it.message }
             println(result)
         }
     }
@@ -167,12 +125,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchRobotModel(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchRobotModel().getOrElse { it.message }
             println(result)
         }
     }
@@ -182,12 +135,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchRobotMode(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchRobotMode().getOrElse { it.message }
             println(result)
         }
     }
@@ -197,12 +145,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchPolyscopeVersion(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchPolyscopeVersion().getOrElse { it.message }
             println(result)
         }
     }
@@ -212,12 +155,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchSerialNumber(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchSerialNumber().getOrElse { it.message }
             println(result)
         }
     }
@@ -227,12 +165,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.fetchSafetyStatus(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.fetchSafetyStatus().getOrElse { it.message }
             println(result)
         }
     }
@@ -242,12 +175,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.unlockProtectiveStop(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.unlockProtectiveStop().getOrElse { it.message }
             println(result)
         }
     }
@@ -257,12 +185,7 @@ object ExamplesDoc {
         val ur = UR("192.168.2.1")
 
         runBlocking {
-            val resultDeferred = CompletableDeferred<String>()
-            ur.shutdown(
-                onResponse = { resultDeferred.complete(it) },
-                onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-            )
-            val result = resultDeferred.await()
+            val result = ur.shutdown().getOrElse { it.message }
             println(result)
         }
     }
@@ -277,14 +200,12 @@ object ExamplesDoc {
         runBlocking {
             try {
                 ur.connect()
-                ur.isConnectedFlow.first { it }
             } catch(e: Exception) {
                 println ("Host is unavailable")
                 exitProcess(1)
             }
             /* Do something */
             ur.disconnect()
-            ur.isConnectedFlow.first { !it }
         }
     }
 

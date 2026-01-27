@@ -44,6 +44,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
+import kotlin.getOrElse
 import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 
@@ -153,111 +154,10 @@ fun main() {
 object Examples {
     var ur = UR(host = "")
 
-
-
-    suspend fun loadInstallation(installation: String){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.loadInstallation(
-            installation = installation,
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun load(program: String){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.load(
-            program = program,
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun fetchLoadedProgram(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchLoadedProgram(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-    suspend fun fetchIsRunning(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchIsRunning(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun fetchProgramState(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchProgramState(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun pause(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.pause (
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun stop(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.stop(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-
-    suspend fun play(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.play (
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun connect(host: String) {
+    fun connect(host: String) {
         ur = UR(host = host, watchdogConfig = WatchdogConfig(enableLogging = false), soTimeout = 5000, logRobotMessages = false)
         try {
             ur.connect()
-            ur.isConnectedFlow.first { it }
         } catch (e: Exception) {
             println("Host is unavailable")
             exitProcess(0)
@@ -265,12 +165,93 @@ object Examples {
     }
 
 
-
-    suspend fun disconnect() {
+    fun disconnect() {
         ur.disconnect()
-        ur.isConnectedFlow.first { !it }
     }
 
+
+    suspend fun loadInstallation(installation: String){
+        val result = ur.loadInstallation(installation).getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun load(program: String){
+        val result = ur.load(program).getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun fetchLoadedProgram(){
+        val result = ur.fetchLoadedProgram().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun fetchIsRunning(){
+        val result = ur.fetchIsRunning().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun fetchProgramState(){
+        val result = ur.fetchProgramState().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun pause(){
+        val result = ur.pause().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun stop(){
+        val result = ur.stop().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun play(){
+        val result = ur.play().getOrElse { it.message }
+        println(result)
+    }
+
+    suspend fun fetchSafetyStatus(){
+        val result = ur.fetchSafetyStatus().getOrElse { it.message }
+        println(result)  //  e.g. "Safetystatus: NORMAL"
+    }
+
+
+
+    suspend fun fetchSerialNumber(){
+        val result = ur.fetchSerialNumber().getOrElse { it.message }
+        println(result)
+    }
+
+
+    suspend fun shutdown(){
+        val result = ur.shutdown().getOrElse { it.message }
+        println(result) // "Shutting down"
+    }
+
+
+    suspend fun fetchPolyscopeVersion(){
+        val result = ur.fetchPolyscopeVersion().getOrElse { it.message }
+        println(result) // e.g. URSoftware 5.12.6.1102099 (Sep 21 2023)
+    }
+
+
+    suspend fun fetchRobotModel(){
+        val result = ur.fetchRobotModel().getOrElse { it.message }
+        println(result) // e.g. "UR5"
+    }
+
+
+    suspend fun fetchRobotMode(){
+        val result = ur.fetchRobotMode().getOrElse { it.message }
+        println(result)  // e.g. "Robotmode: RUNNING"
+    }
 
 
     suspend fun powerOn() {
@@ -282,7 +263,8 @@ object Examples {
             return
         }
 
-        ur.powerOn { println(it) } // "closing popup ... Powering on"
+        val result = ur.powerOn().getOrElse { it.message }  // "closing popup ... Powering on"
+        println(result)
 
         val success = withTimeoutOrNull(30000) {
             while (ur.robotModeData?.robotMode != RobotMode.ROBOT_MODE_RUNNING) {
@@ -306,7 +288,8 @@ object Examples {
             return
         }
 
-        ur.powerOff { println(it) } // "Powering off"
+        val result = ur.powerOff().getOrElse { it.message }   // "Powering off"
+        println(result)
 
         val success = withTimeoutOrNull(30000) {
             while (ur.robotModeData?.robotMode != RobotMode.ROBOT_MODE_POWER_OFF) {
@@ -318,31 +301,6 @@ object Examples {
         println(if (success == true) "\uD83D\uDFE2 The robot is powered off." else "\uD83D\uDD34 Something went wrong!")
     }
 
-
-
-    suspend fun fetchRobotModel(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchRobotModel { result ->
-            resultDeferred.complete(result)
-        }
-        val result = resultDeferred.await()
-        println(result) // e.g. "UR5"
-    }
-
-
-
-    suspend fun fetchRobotMode(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchRobotMode(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result) // e.g. "Robotmode: RUNNING"
-    }
-
-
-
     suspend fun unlockProtectiveStop(){
         val protectiveStop = ur.robotModeDataFlow
             .first { it != null }!!
@@ -351,65 +309,11 @@ object Examples {
             println("\uD83D\uDFE2 No security or emergency stop recognized.")
             return
         }
+        val result = ur.unlockProtectiveStop().getOrElse { it.message }
 
-        val resultDeferred = CompletableDeferred<String>()
-        ur.unlockProtectiveStop(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
         println(result)  // e.g. "Protective stop releasing"
         delay(150)  // Gives the primary interface (10 Hz) enough time to update the state ur.robotModeData
     }
-
-
-
-    suspend fun fetchSafetyStatus(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchSafetyStatus(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)  //  e.g. "Safetystatus: NORMAL"
-    }
-
-
-
-    suspend fun fetchSerialNumber(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchSerialNumber(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result)
-    }
-
-
-
-    suspend fun shutdown(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.shutdown(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result) // "Shutting down"
-    }
-
-
-
-    suspend fun fetchPolyscopeVersion(){
-        val resultDeferred = CompletableDeferred<String>()
-        ur.fetchPolyscopeVersion(
-            onResponse = { resultDeferred.complete(it) },
-            onFailure = { resultDeferred.complete(it.message ?: "Something went wrong") }
-        )
-        val result = resultDeferred.await()
-        println(result) // e.g. URSoftware 5.12.6.1102099 (Sep 21 2023)
-    }
-
 
 
     fun enterFreeDriveMode() {
@@ -429,7 +333,6 @@ object Examples {
     }
 
 
-
     suspend fun exitFreeDriveMode() {
         ur.arm.exitFreeDriveMode(
             cmdTimeout = 3000,
@@ -441,7 +344,6 @@ object Examples {
             }
         ).await()   // await for the finale state
     }
-
 
 
     suspend fun setTcpOffset() {
@@ -459,7 +361,6 @@ object Examples {
     }
 
 
-
     suspend fun setTargetPayload() {
         val state = ur.arm.setTargetPayload(
             m = 0.26f,
@@ -475,7 +376,6 @@ object Examples {
         ).await()  // await for the finale state
         println(state)
     }
-
 
 
     suspend fun runScript() {
@@ -508,7 +408,6 @@ object Examples {
     }
 
 
-
     suspend fun movej() {
         val state = ur.arm.movej(
             q = JointPosition(
@@ -533,7 +432,6 @@ object Examples {
         ).await()  // await for the finale state
         println(state)
     }
-
 
 
     suspend fun movec() {
@@ -568,7 +466,6 @@ object Examples {
     }
 
 
-
     suspend fun movel() {
         val state = ur.arm.movel(
             p = Pose(
@@ -595,7 +492,6 @@ object Examples {
     }
 
 
-
     suspend fun testEndEffector(host: String, index: Int, tool: KClass<out URTool>) {
          when (tool) {
              OnRobotRG::class -> testOnRobotRG(host, index)
@@ -603,7 +499,6 @@ object Examples {
              OnRobotVG::class -> testOnRobotVG(host, index)
         }
     }
-
 
 
     suspend fun testOnRobotRG(host: String, index: Int) {
@@ -624,7 +519,6 @@ object Examples {
     }
 
 
-
     suspend fun testOnRobotTFG(host: String, index: Int) {
         val tfg = ur.attachToolOnRobotTFG(host = host, toolIndex = index)
         val state = tfg.gripExt(
@@ -641,7 +535,6 @@ object Examples {
         ).await()  // await for the finale state
         println(state)
     }
-
 
 
     suspend fun testOnRobotVG(host: String, index: Int) {
