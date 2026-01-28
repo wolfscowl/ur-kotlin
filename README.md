@@ -82,18 +82,17 @@ try {
 }
 ```
 
-### 📚 Guides
+## 📚 Guides
 Explore our detailed tutorials to master robot automation with Kotlin:
 
-📖 [Remote Control & Program Management](guides/remote-control-guide.md)
+📖 [Remote Control & Program Management:](guides/remote-control-guide.md)
 Learn how to interact with Polyscope, load installations, and automate program execution via the Dashboard Server.
 
-📖 [Creating Motion Procedures & Workflows](guides/motion-procedures-guide.md) A deep dive into the Primary Interface. Learn how to script complex movement sequences and handle real-time data feedback.
+🛠️ **Creating Motion Procedures & Workflows:** (In Progress) A deep dive into the Primary Interface. Learn how to script complex movement sequences and handle real-time data feedback.
 
-📖 [Operating OnRobot End-Effectors](onrobot-gripper-guide.md) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
+🛠️ **Operating OnRobot End-Effectors:** (In Progress) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
 
 
-A guide follows ...
 
 
 ## 📡 Primary Interface

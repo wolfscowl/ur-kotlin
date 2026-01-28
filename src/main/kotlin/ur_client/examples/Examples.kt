@@ -38,7 +38,6 @@ import com.wolfscowl.ur_client.model.robot_state.mode.RobotMode
 import com.wolfscowl.ur_client.examples.Examples.setTcpOffset
 import com.wolfscowl.ur_client.examples.Examples.stop
 import com.wolfscowl.ur_client.model.element.Vec3
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -54,8 +53,8 @@ RUN THIS ONLY ON OFFLINE SIMULATION !!!
 -> Tested with URSIM UR5
 */
 fun main() {
-    val urHost = "192.168.56.101"
-    val onRobotHost = "192.168.56.102"
+    val urHost = "192.168.178.32"
+    val onRobotHost = "192.168.178.102"
     val toolIndex = 0
 
     runBlocking {
@@ -300,6 +299,7 @@ object Examples {
 
         println(if (success == true) "\uD83D\uDFE2 The robot is powered off." else "\uD83D\uDD34 Something went wrong!")
     }
+
 
     suspend fun unlockProtectiveStop(){
         val protectiveStop = ur.robotModeDataFlow

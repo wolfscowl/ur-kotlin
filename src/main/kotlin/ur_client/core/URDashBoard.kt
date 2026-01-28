@@ -144,7 +144,7 @@ interface URDashBoard {
      *
      * @return [Result] containing combined response strings on success, or an [Exception] on failure.
      * Response messages include:
-     * - `"Powering on"`
+     * - `"closing popup"`
      * - `"closing safety popup"`
      * - `"Protective stop releasing"`
      * - `"Powering on"`
