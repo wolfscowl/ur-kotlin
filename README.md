@@ -68,7 +68,7 @@ Create an instance of the Universal Robots client by providing the robot's IP ad
 ```kotlin
 val ur = UR(
     host = "192.168.2.1",
-    // additional configurations...
+    // additional optional configurations...
 )
 ```
 
@@ -85,12 +85,16 @@ try {
 ## 📚 Guides
 Explore our detailed tutorials to master robot automation with Kotlin:
 
-📖 [Remote Control & Program Management:](guides/remote-control-guide.md)
+📖 [1. Dashboard Server - Remote Control & Program Management:](guides/dashboard-server-guide.md)
 Learn how to interact with Polyscope, load installations, and automate program execution via the Dashboard Server.
 
-🛠️ **Creating Motion Procedures & Workflows:** (In Progress) A deep dive into the Primary Interface. Learn how to script complex movement sequences and handle real-time data feedback.
+📖 [2. Primary Interface - Real-Time Data & Monitoring:](guides/primary-interface-data-guide.md)
+Learn how to subscribe to 10Hz live states, handle safety events, and monitor the message history.
 
-🛠️ **Operating OnRobot End-Effectors:** (In Progress) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
+📖 [3. Primary Interface - Motion Control, Scripts & Procedures:](guides/primary-interface-data-guide.md)
+**(In Progress)** Learn how to execute precise movements, run custom URScripts, and build automation sequences.
+
+📖 **Primary Interface: Operating OnRobot End-Effectors:** (In Progress) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
 
 
 

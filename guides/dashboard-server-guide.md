@@ -1,12 +1,10 @@
-# 📖 Guide 1: Remote Control & Program Management
+# 📖 Guide 1: Dashboard Server 
 
 ### Focus: Controlling Polyscope, Power States, and Program Execution.
 
 
-
-
 ## Introduction
-The Dashboard Server is your remote control for PolyScope. 
+The **Dashboard Server (Port 29999)** is your remote control for PolyScope. 
 Its primary purpose is to change the robot's operational state — powering the arm on, releasing brakes, and managing the execution of .urp programs. While it can return information, its main focus in this library is taking action.
 
 > **💡 Core Concept: Safety First**
@@ -29,7 +27,7 @@ Creating a UR Instance:
 // Setup the robot instance
 val ur = UR(
     host = "192.168.2.1",
-    soTimeout = 5000  // Timeout for Dashboard Server connections
+    // additional optional configurations...
 )
 ```
 

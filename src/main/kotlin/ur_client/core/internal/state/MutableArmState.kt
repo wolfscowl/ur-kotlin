@@ -57,7 +57,7 @@ internal class MutableArmState(
         val jointPosDecimal = if (roundDecimals) if (jointsInDegree) 2 else 3 else -1
 
         return buildString {
-            append("-=RGArmState=-\n")
+            append("-=ArmState=-\n")
             append(super.toString().formatString() + "\n")
             append("  jointPosition = \n")
             append(jointPosition
