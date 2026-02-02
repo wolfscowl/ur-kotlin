@@ -1,4 +1,4 @@
-📖 Guide 3: Primary Interface
+# 📖 Guide 3: Primary Interface
 ### Focus: State-Driven Motion, Awaiting Results, and Multi-Step Sequences
 
 ## Introduction
@@ -136,7 +136,7 @@ Because all commands are non-blocking, the library provides extension functions 
 
 ### Awaiting Completion
 
-You can let your workflow wait until a command reaches a final state (`runningState` = `END`, `CANCELED`, or `TIMEOUT`) before proceeding to the next execution step.
+You can let your workflow wait until a command reaches a final state (`runningState` = `END`, `PAUSED`, `CANCELED`, or `TIMEOUT`) before proceeding to the next execution step.
 - **Coroutines:** Use `state.await()` or `state.awaitUntil { ... }`.
 - **Threads:** Use `state.awaitBlocking()` or `state.awaitBlockingUntil { ... }`.
 
@@ -144,8 +144,9 @@ You can let your workflow wait until a command reaches a final state (`runningSt
 
 A command will transition to the `CANCELED` state if:
 
-- **Safety/Pre-flight checks fail:** The robot is not in the correct mode or a safety stop is active.
+- **Safety/Pre-flight checks fail:** The robot is not connected, in the correct mode or a safety stop is active.
 - **URScript Runtime Exception:** A syntax or logic error occurs during execution on the robot controller.
+- **Safety Stop:** An emergency or security stop occurs during execution.
 - **Command Overwriting:** A new command is sent via the Primary Interface before the current one has finished. The UR controller immediately aborts the previous script to start the new one.
 
 
@@ -160,7 +161,7 @@ runBlocking {
       // 2. Perform the next step only if the first was successful
       ur.arm.movel(pickPose).await()
    } else if (moveState.errorOccurred) {
-      println("Move failed: ${moveState.errors.firstOrNull()?.message}")
+      println("Move failed: ${moveState.errors}")
    }
 }
 ```

@@ -90,34 +90,30 @@ internal class OnRobotRGImpl (
         scriptName: String,
         updateState: suspend ((MutableRGToolState) -> Unit) -> Unit
     ) {
+        var isCancelledByError = false
+
         urScriptEventFlow
             .onStart { onStart() }
             .takeWhile { event ->
-                when (event) {
-                    is URScriptEvent.ExecutionState -> {
-                        updateState { it.runningState = event.state }
-                        !(event.scriptName == scriptName && event.state in setOf(
-                            RunningState.END,
-                            RunningState.PAUSED
-                        ))
+                if (event is URScriptEvent.ExecutionState && event.scriptName == scriptName) {
+                    val isFinal = event.state in setOf(RunningState.END, RunningState.PAUSED)
+
+                    updateState {
+                        it.runningState = if (isCancelledByError) RunningState.CANCELED else event.state
                     }
-                    is URScriptEvent.RuntimeException -> {
-                        updateState {
-                            it.errors.add(event.toError())
-                            it.runningState = RunningState.END
-                        }
-                        false
-                    }
-                    else -> true
+                    !isFinal
+                } else {
+                    true
                 }
             }
             .collect { event ->
                 when (event) {
-                    is URScriptEvent.ToolDetection -> {
-                        if (event.scriptName == scriptName)
-                            updateState { it.toolDetected = event.detected }
+                    is URScriptEvent.RuntimeException -> {
+                        isCancelledByError = true
+                        updateState { it.errors.add(event.toError()) }
                     }
                     is URScriptEvent.SafetyModeStop -> {
+                        isCancelledByError = true
                         updateState{
                             it.safetyModeStop = true
                             it.errors.add(
@@ -127,6 +123,10 @@ internal class OnRobotRGImpl (
                                 )
                             )
                         }
+                    }
+                    is URScriptEvent.ToolDetection -> {
+                        if (event.scriptName == scriptName)
+                            updateState { it.toolDetected = event.detected }
                     }
                     is URScriptEvent.GripDetection -> {
                         if (event.scriptName == scriptName)

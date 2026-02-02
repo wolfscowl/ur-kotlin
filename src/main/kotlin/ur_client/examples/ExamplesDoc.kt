@@ -31,12 +31,10 @@ object ExamplesDoc {
             ur.isConnectedFlow.first { it }
 
             println( ur.powerOn().getOrThrow() )
-            ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_RUNNING}
 
             /* Do something */
 
             println( ur.powerOff().getOrThrow() )
-            ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_POWER_OFF}
         }
     }
 
@@ -598,7 +596,7 @@ object ExamplesDoc {
         runBlocking {
             ur.connect()
             ur.isConnectedFlow.first { it }
-            val state = tfg.releaseExt(
+            val state = tfg.releaseInt(
                 width = 0.0,
                 force = 100,
                 speed = 100,

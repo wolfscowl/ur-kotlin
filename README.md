@@ -91,10 +91,10 @@ Learn how to interact with Polyscope, load installations, and automate program e
 📖 [2. Primary Interface - Real-Time Data & Monitoring:](guides/primary-interface-data-guide.md)
 Learn how to subscribe to 10Hz live states, handle safety events, and monitor the message history.
 
-📖 [3. Primary Interface - Motion Control, Scripts & Procedures:](guides/primary-interface-data-guide.md)
+📖 [3. Primary Interface - Motion Control, Scripts & Procedures:](guides/primary-interface-procedures-guide.md)
 **(In Progress)** Learn how to execute precise movements, run custom URScripts, and build automation sequences.
 
-📖 **Primary Interface: Operating OnRobot End-Effectors:** (In Progress) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
+📖 [4. Primary Interface: Operating OnRobot End-Effectors:](guides/primary-interface-gripper-guide.md) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
 
 
 

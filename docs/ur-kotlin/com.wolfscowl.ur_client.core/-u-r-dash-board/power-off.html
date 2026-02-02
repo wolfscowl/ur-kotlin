@@ -135,12 +135,10 @@ runBlocking {
     ur.isConnectedFlow.first { it }
 
     println( ur.powerOn().getOrThrow() )
-    ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_RUNNING}
 
     /* Do something */
 
     println( ur.powerOff().getOrThrow() )
-    ur.robotModeDataFlow.first{ it?.robotMode ==  RobotMode.ROBOT_MODE_POWER_OFF}
 } 
    //sampleEnd
 }</code></pre></div></div></div>
