@@ -89,14 +89,13 @@ Explore our detailed tutorials to master robot automation with Kotlin:
 Learn how to interact with Polyscope, load installations, and automate program execution via the Dashboard Server.
 
 📖 [2. Primary Interface - Real-Time Data & Monitoring:](guides/primary-interface-data-guide.md)
-Learn how to subscribe to 10Hz live states, handle safety events, and monitor the message history.
+Learn how to read live data and monitor the robot's "Digital Twin" through the Primary Interface.
 
 📖 [3. Primary Interface - Motion Control, Scripts & Procedures:](guides/primary-interface-procedures-guide.md)
-**(In Progress)** Learn how to execute precise movements, run custom URScripts, and build automation sequences.
+Learn how to send movement commands and synchronize your code with the robot's physical actions using our state-driven procedure logic
 
-📖 [4. Primary Interface: Operating OnRobot End-Effectors:](guides/primary-interface-gripper-guide.md) Everything you need to know about integrating and controlling TFG, RG, and VG grippers within your procedures.
-
-
+📖 [4. Primary Interface: Operating OnRobot End-Effectors:](guides/primary-interface-gripper-guide.md)
+Learn how to integrate OnRobot grippers tools into your automation workflows.
 
 
 ## 📡 Primary Interface
@@ -179,5 +178,40 @@ and [Dashboard Server Documentation](https://github.com/wolfscowl/ur-kotlin/blob
 - [fetchIsRunning](https://wolfscowl.github.io/ur-kotlin/ur-kotlin/com.wolfscowl.ur_client.core/-u-r-dash-board/fetch-is-running.html)
 - [fetchProgramState](https://wolfscowl.github.io/ur-kotlin/ur-kotlin/com.wolfscowl.ur_client.core/-u-r-dash-board/fetch-program-state.html)
 - [fetchLoadedProgram](https://wolfscowl.github.io/ur-kotlin/ur-kotlin/com.wolfscowl.ur_client.core/-u-r-dash-board/fetch-loaded-program.html)
-    
 
+
+## 📱 Showcase: Vocobo (Context-Aware Voice Control)
+
+I originally developed this library as the communication backbone for **Vocobo** — 
+a LLM driven mobile assistance system that enables **Programming by Natural Language (PNL)** 
+for Universal Robots.
+
+I built this library because no Kotlin or Java library existed that allowed for seamless, 
+native communication with UR Cobots. Vocobo demonstrates what is possible with this 
+library: it bridges the "interface gap" by allowing operators to program and control 
+the robot arm entirely through voice and touch.
+
+
+### How Vocobo leverages this Library:
+
+- **High-Level Control:** Using the Dashboard Server (Guide 1), Vocobo manages the robot's operational state—such as powering on and releasing brakes—directly from a smartphone.
+
+- **Real-Time Telemetry:** Through the Digital Twin (Guide 2), Vocobo constantly monitors the robot's status. This enables context-sensitive commands like "Lift the arm a bit higher," as the app is always aware of the current position.
+
+- **Synchronized Workflows:** Complex tasks like "Pick-and-Place" are executed via Procedures (Guide 3/4). Vocobo utilizes the library's state-driven design to detect exactly when a motion sequence is completed or if an error has occurred.
+
+
+
+### Key Features demonstrated by Vocobo:
+
+Android Native: The library is lightweight enough to run natively on mobile devices, eliminating the need for stationary PCs or bulky Teach-Pendants.
+
+Unified Control: Vocobo shows how to manage both the Dashboard Server (State Control) and the Primary Interface (Motion & Telemetry) within a single reactive application.
+
+
+
+Workflow Efficiency: It enables a single operator to guide the robot (Free-Drive) while simultaneously saving waypoints via voice commands.
+
+
+
+Vocobo allows users to program procedures via voice and execute them context-sensitively. It serves as the ultimate proof of concept for the stability and performance of this library.

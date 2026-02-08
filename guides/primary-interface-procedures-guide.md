@@ -3,7 +3,7 @@
 
 ## Introduction
 
-While [Guide 2](guides/primary-interface-data-guide.md) focused on reading data, Guide 3 is about **taking action**. The Primary Interface allows you to send commands that move the robot arm or execute complex logic.
+While [Guide 2](guides/primary-interface-data-guide.md) focused on reading data, Guide 3 is dedicated to the Primary Interface's motion capabilities and its state-driven procedure logic.
 
 In this library, all motion and script commands follow two core principles:
 1. **Safety-First (Pre-Flight Checks):** Before any command is sent the library automatically validates:
@@ -165,3 +165,9 @@ runBlocking {
    }
 }
 ```
+
+## ⏭️ Next Step
+With the ability to move the robot arm, you are ready to interact with objects using tools.
+
+[Go to Guide 4: OnRobot Gripper Control](guides/primary-interface-gripper-guide.md)
+— Learn how to integrate OnRobot grippers tools into your automation workflows.

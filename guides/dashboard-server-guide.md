@@ -4,8 +4,13 @@
 
 
 ## Introduction
+This guide covers how to manage the robot's operational state and program execution.
+
 The **Dashboard Server (Port 29999)** is your remote control for PolyScope. 
-Its primary purpose is to change the robot's operational state — powering the arm on, releasing brakes, and managing the execution of .urp programs. While it can return information, its main focus in this library is taking action.
+Its primary purpose is to change the robot's operational state — powering the arm on, 
+releasing brakes, and managing the execution of .urp programs.
+While it can return information, its main focus in this library is High-Level State Control.
+
 
 > **💡 Core Concept: Safety First**
 > Every Dashboard command in this library returns a Kotlin `Result<String>`. This prevents your app from crashing on network errors and forces you to handle potential hardware failures. [Learn how to handle results below.](#4-handling-results--errors)
@@ -175,3 +180,9 @@ runBlocking {
 }
 ```
 
+
+## ⏭️ Next Step
+Now that you can control the robot's power and programs, it's time to look under the hood.
+
+[Go to Guide 2: Real-Time Data & Monitoring](guides/primary-interface-data-guide.md)
+ — Learn how to read live data and monitor the robot's "Digital Twin" through the Primary Interface.

@@ -5,8 +5,9 @@
 
 ## Introduction
 
-While the Dashboard Server is used for High-Level State Control (powering on, loading programs), 
-the **Primary Interface (Port 30001)** is where the heart of the data exchange lies.
+While [Guide 1](guides/dashboard-server-guide.md) focused on the Dashboard Server for High-Level State Control 
+(powering on, loading programs, or releasing brakes), 
+Guide 2 is dedicated to the **Primary Interface (Port 30001)** and its capabilities for Real-Time Data & Monitoring.
 
 ## 📡 Connection Handling
 
@@ -130,7 +131,11 @@ runBlocking {
 ```
 
 
+## ⏭️ Next Step
+You now know how to monitor the robot's state. The next step is to make the robot move.
 
+[Go to Guide 3: State-Driven Motion & Procedures](guides/primary-interface-procedure-guide.md)
+— Learn how to send movement commands and synchronize your code with the robot's physical actions using our state-driven procedure logic.
 
 
 
