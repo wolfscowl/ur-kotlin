@@ -200,18 +200,30 @@ the robot arm entirely through voice and touch.
 
 - **Synchronized Workflows:** Complex tasks like "Pick-and-Place" are executed via Procedures (Guide 3/4). Vocobo utilizes the library's state-driven design to detect exactly when a motion sequence is completed or if an error has occurred.
 
+- **Hands-on Programming:**  The library enables a fluid workflow where a single operator can guide the robot in Free-Drive (Guide 3) and save waypoints via voice commands simultaneously, eliminating the need to go back and forth to a stationary Teach-Pendant.
+
+### 📸 App Impressions
 
 
-### Key Features demonstrated by Vocobo:
-
-Android Native: The library is lightweight enough to run natively on mobile devices, eliminating the need for stationary PCs or bulky Teach-Pendants.
-
-Unified Control: Vocobo shows how to manage both the Dashboard Server (State Control) and the Primary Interface (Motion & Telemetry) within a single reactive application.
-
-
-
-Workflow Efficiency: It enables a single operator to guide the robot (Free-Drive) while simultaneously saving waypoints via voice commands.
-
-
-
-Vocobo allows users to program procedures via voice and execute them context-sensitively. It serves as the ultimate proof of concept for the stability and performance of this library.
+<table border="0px" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+<td align="center" width="50%">
+      <img src="guides/images/vocobo01.jpg" width="250px" alt="Dashboard Control"/><br />
+      <em>Dashboard: Remote state control</em>
+    </td>
+<td align="center" width="50%">
+      <img src="guides/images/vocobo02.jpg" width="250px" alt="Manual Control"/><br />
+      <em>Manual Control via Touch</em>
+    </td>
+  </tr>
+  <tr>
+<td align="center" width="50%">
+      <img src="guides/images/vocobo03.jpg" width="250px" alt="Voice Interaction"/><br />
+      <em>Voice interaction & LLM logic</em>
+    </td>
+<td align="center" width="50%">
+      <img src="guides/images/vocobo04.jpg" width="250px" alt="Visual Program"/><br />
+      <em>Visualized instruction sequence</em>
+    </td>
+  </tr>
+</table>
