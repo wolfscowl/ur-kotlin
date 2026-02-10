@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.wolfscowl:ur-kotlin:1.0.0")
+    implementation("com.github.wolfscowl:ur-kotlin:1.0.1")
 }
 ```
 
@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.wolfscowl:ur-kotlin:1.0.0'
+    implementation 'com.github.wolfscowl:ur-kotlin:1.0.1'
 }
 ```
 </details>
@@ -53,7 +53,7 @@ Install the Universal Robots API client by adding the JitPack repository and the
 <dependency>
     <groupId>com.github.wolfscowl</groupId>
     <artifactId>ur-kotlin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
