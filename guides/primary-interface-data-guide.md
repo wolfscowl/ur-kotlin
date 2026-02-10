@@ -134,7 +134,7 @@ runBlocking {
 ## ⏭️ Next Step
 You now know how to monitor the robot's state. The next step is to make the robot move.
 
-[Go to Guide 3: State-Driven Motion & Procedures](/guides/primary-interface-procedure-guide.md)
+[Go to Guide 3: State-Driven Motion & Procedures](/guides/primary-interface-procedures-guide.md)
 — Learn how to send movement commands and synchronize your code with the robot's physical actions using our state-driven procedure logic.
 
 
