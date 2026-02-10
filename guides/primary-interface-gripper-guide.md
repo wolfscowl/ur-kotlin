@@ -3,7 +3,7 @@
 
 ## Introduction
 
-While [Guide 3](guides/primary-interface-procedures-guide.md) focused on moving the robot arm, Guide 4 is dedicated to OnRobot Gripper Control and its seamless integration into your automation workflows.
+While [Guide 3](/guides/primary-interface-procedures-guide.md) focused on moving the robot arm, Guide 4 is dedicated to OnRobot Gripper Control and its seamless integration into your automation workflows.
 
 Just like the arm movements, every tool command follows the two core principles of this library:
 1. **Safety-First (Pre-Flight Checks):** Before any command is sent the library automatically validates:

@@ -184,5 +184,5 @@ runBlocking {
 ## ⏭️ Next Step
 Now that you can control the robot's power and programs, it's time to look under the hood.
 
-[Go to Guide 2: Real-Time Data & Monitoring](guides/primary-interface-data-guide.md)
+[Go to Guide 2: Real-Time Data & Monitoring](/guides/primary-interface-data-guide.md)
  — Learn how to read live data and monitor the robot's "Digital Twin" through the Primary Interface.

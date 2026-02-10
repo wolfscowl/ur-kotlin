@@ -5,7 +5,7 @@
 
 ## Introduction
 
-While [Guide 1](guides/dashboard-server-guide.md) focused on the Dashboard Server for High-Level State Control 
+While [Guide 1](/guides/dashboard-server-guide.md) focused on the Dashboard Server for High-Level State Control 
 (powering on, loading programs, or releasing brakes), 
 Guide 2 is dedicated to the **Primary Interface (Port 30001)** and its capabilities for Real-Time Data & Monitoring.
 
@@ -134,7 +134,7 @@ runBlocking {
 ## ⏭️ Next Step
 You now know how to monitor the robot's state. The next step is to make the robot move.
 
-[Go to Guide 3: State-Driven Motion & Procedures](guides/primary-interface-procedure-guide.md)
+[Go to Guide 3: State-Driven Motion & Procedures](/guides/primary-interface-procedure-guide.md)
 — Learn how to send movement commands and synchronize your code with the robot's physical actions using our state-driven procedure logic.
 
 
