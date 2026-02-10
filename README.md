@@ -1,6 +1,7 @@
 # Universal Robots API client for Kotlin
 
 [![Release](https://jitpack.io/v/wolfscowl/ur-kotlin.svg)](https://jitpack.io/#wolfscowl/ur-kotlin)
+[![License](https://img.shields.io/github/license/wolfscowl/ur-kotlin?color=yellow)](LICENSE.md)
 [![Docs](https://img.shields.io/badge/docs-api-blueviolet?logo=kotlin&logoColor=white)](https://wolfscowl.github.io/ur-test/)
 
 A lightweight Kotlin API client for Universal Robots (Primary Interface and Dashboard Server) with coroutines support.
@@ -179,6 +180,10 @@ and [Dashboard Server Documentation](https://github.com/wolfscowl/ur-kotlin/blob
 - [fetchProgramState](https://wolfscowl.github.io/ur-kotlin/ur-kotlin/com.wolfscowl.ur_client.core/-u-r-dash-board/fetch-program-state.html)
 - [fetchLoadedProgram](https://wolfscowl.github.io/ur-kotlin/ur-kotlin/com.wolfscowl.ur_client.core/-u-r-dash-board/fetch-loaded-program.html)
 
+## 📄 License
+
+UR Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).
+This is an unofficial library, it is not affiliated with nor endorsed by Universal Robots.
 
 ## 📱 Showcase: Vocobo (Context-Aware Voice Control)
 
@@ -208,21 +213,21 @@ the robot arm entirely through voice and touch.
 <table border="0px" width="100%" cellpadding="0" cellspacing="0">
   <tr>
 <td align="center" width="50%">
-      <img src="guides/images/vocobo01.jpg" width="250px" alt="Dashboard Control"/><br />
+      <img src="guides/images/vocobo01.jpg" width="300px" alt="Dashboard Control"/><br />
       <em>Dashboard: Remote state control</em>
     </td>
 <td align="center" width="50%">
-      <img src="guides/images/vocobo02.jpg" width="250px" alt="Manual Control"/><br />
+      <img src="guides/images/vocobo02.jpg" width="300px" alt="Manual Control"/><br />
       <em>Manual Control via Touch</em>
     </td>
   </tr>
   <tr>
 <td align="center" width="50%">
-      <img src="guides/images/vocobo03.jpg" width="250px" alt="Voice Interaction"/><br />
+      <img src="guides/images/vocobo03.jpg" width="300px" alt="Voice Interaction"/><br />
       <em>Voice interaction & LLM logic</em>
     </td>
 <td align="center" width="50%">
-      <img src="guides/images/vocobo04.jpg" width="250px" alt="Visual Program"/><br />
+      <img src="guides/images/vocobo04.jpg" width="300px" alt="Visual Program"/><br />
       <em>Visualized instruction sequence</em>
     </td>
   </tr>
